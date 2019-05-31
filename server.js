@@ -14,32 +14,16 @@ var Routes = require('./Routes')
 //var TruckGenerator= require('./Lib/TruckSimulator')
 var cfenv = require('cfenv');
 
-//TruckGenerator.StartSimulator()
-
-
-/// boxes simulator
-// setInterval(function(){
-//     var box={
-//         id:'box_1234',
-//         truck:'linfox1',
-//         delivered:false
-//     }
-//     let boxes=[box]
-//     process.emit("emitBoxes",boxes)
-// },10000)
-
 
 
 const init = async () => {
 
     //Create Server
-    var appEnv = cfenv.getAppEnv();
-
     var server = new Hapi.Server({
         app: {
             name: Config.APP_CONSTANTS.SERVER.appName
         },
-        port: appEnv.port || Config.APP_CONSTANTS.SERVER.PORTS.HAPI,
+        port: process.env.PORT || Config.APP_CONSTANTS.SERVER.PORTS.HAPI,
         routes: { cors: true }
     });
 

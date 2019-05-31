@@ -7,7 +7,7 @@
 var SERVER = {
     APP_NAME: 'boilerplate-deakin',
     PORTS: {
-        HAPI: 8000
+        HAPI: 6001
         //HAPI: 3000
     },
     TOKEN_EXPIRATION_IN_MINUTES: 600,
