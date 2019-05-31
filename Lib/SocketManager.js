@@ -15,6 +15,11 @@ exports.connectSocket = function (server) {
  })
 
  process.on("emitTrucks",function(trucks){
-    console.log('trucks')
     io.emit('trucks',{trucks:trucks})
+})
+
+
+process.on("emitBoxes",function(boxes){
+    console.log('emitting box',boxes)
+    io.emit('boxes',{boxes:boxes})
 })

@@ -15,6 +15,21 @@ var Routes = require('./Routes')
 var cfenv = require('cfenv');
 
 //TruckGenerator.StartSimulator()
+
+
+/// boxes simulator
+// setInterval(function(){
+//     var box={
+//         id:'box_1234',
+//         truck:'linfox1',
+//         delivered:false
+//     }
+//     let boxes=[box]
+//     process.emit("emitBoxes",boxes)
+// },10000)
+
+
+
 const init = async () => {
 
     //Create Server

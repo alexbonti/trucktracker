@@ -15,7 +15,7 @@ var sensorApi = {
       handler: function(request, h) {
         var payload=request.query;
         return new Promise((resolve, reject) => {
-          Controller.DataController.emitSocketData(payload,function(
+          Controller.DataController.emitSensorData(payload,function(
             err,
             data
           ) {
@@ -51,7 +51,44 @@ var sensorApi = {
       }
     }
   };
+  var boxApi = {
+    method: "GET",
+    path: "/api/box",
+    config: {
+      description: "box data api",
+      tags: ["api", "sensor"],
+      handler: function(request, h) {
+        var payload=request.query;
+        return new Promise((resolve, reject) => {
+          Controller.DataController.emitBoxData(payload,function(
+            err,
+            data
+          ) {
+            if (err) reject(UniversalFunctions.sendError(err));
+            else
+              resolve(
+                UniversalFunctions.sendSuccess(
+                  Config.APP_CONSTANTS.STATUS_MSG.SUCCESS.DEFAULT,
+                  data
+                )
+              );
+          });
+        });
+      },
+      validate: {
+        query:{
+          id: Joi.string().required(),
+        },
+        failAction: UniversalFunctions.failActionFunction
+      },
+      plugins: {
+        "hapi-swagger": {
+          responseMessages:
+            UniversalFunctions.CONFIG.APP_CONSTANTS.swaggerDefaultResponseMessages
+        }
+      }
+    }
+  };
 
-
-var TruckRoute = [sensorApi];
+var TruckRoute = [sensorApi,boxApi];
 module.exports = TruckRoute;

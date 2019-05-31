@@ -5,7 +5,7 @@ var UniversalFunctions = require("../../Utils/UniversalFunctions");
 var async = require("async");
 var ERROR = UniversalFunctions.CONFIG.APP_CONSTANTS.STATUS_MSG.ERROR;
 
-var emitSocketData = function(payload,callback) {
+var emitSensorData = function(payload,callback) {
   payload.time=Date.now()
   payload.id='linfox1',
   payload.location={
@@ -21,7 +21,22 @@ var emitSocketData = function(payload,callback) {
   return callback(null,{});
 };
 
+var emitBoxData = function(payload,callback) {
+  payload.time=Date.now()
+  payload.truck='linfox1'
+  payload.delivered=false
+
+
+  console.log(payload)
+  let boxes=[payload];
+  //console.log(trucks)
+
+  process.emit("emitBoxes",boxes)
+  return callback(null,{});
+};
+
 
 module.exports = {
-    emitSocketData: emitSocketData
+    emitSensorData: emitSensorData,
+    emitBoxData:emitBoxData
 };
