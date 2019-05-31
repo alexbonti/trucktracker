@@ -11,8 +11,7 @@ var Config = require('./Config');
 var Plugins = require('./Plugins');
 var SocketManager = require('./Lib/SocketManager');
 var Routes = require('./Routes')
-var TruckGenerator= require('./Lib/TruckSimulator')
-var express = require('express');
+//var TruckGenerator= require('./Lib/TruckSimulator')
 var cfenv = require('cfenv');
 
 //TruckGenerator.StartSimulator()
